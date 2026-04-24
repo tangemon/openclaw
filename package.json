@@ -481,6 +481,18 @@
       "types": "./dist/plugin-sdk/provider-zai-endpoint.d.ts",
       "default": "./dist/plugin-sdk/provider-zai-endpoint.js"
     },
+    "./plugin-sdk/prompt-reorganization": {
+      "types": "./dist/plugin-sdk/prompt-reorganization.d.ts",
+      "default": "./dist/plugin-sdk/prompt-reorganization.js"
+    },
+    "./plugin-sdk/data-extractor": {
+      "types": "./dist/plugin-sdk/data-extractor.d.ts",
+      "default": "./dist/plugin-sdk/data-extractor.js"
+    },
+    "./plugin-sdk/loop-warning": {
+      "types": "./dist/plugin-sdk/loop-warning.d.ts",
+      "default": "./dist/plugin-sdk/loop-warning.js"
+    },
     "./plugin-sdk/secret-input": {
       "types": "./dist/plugin-sdk/secret-input.d.ts",
       "default": "./dist/plugin-sdk/secret-input.js"

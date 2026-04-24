@@ -1,0 +1,41 @@
+{
+  "name": "@openclaw/prompt-reorganization",
+  "version": "1.0.0",
+  "description": "智能分析用户输入并推荐相关技能的插件",
+  "keywords": [
+    "ai",
+    "openclaw",
+    "plugin",
+    "prompt",
+    "reorganization",
+    "skills"
+  ],
+  "license": "MIT",
+  "author": "OpenClaw Team",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "format": "prettier --write src/**/*.ts",
+    "lint": "eslint src/**/*.ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

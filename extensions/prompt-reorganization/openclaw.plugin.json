@@ -1,0 +1,108 @@
+{
+  "id": "prompt-reorganization",
+  "name": "Prompt Reorganization",
+  "version": "1.0.0",
+  "description": "智能分析用户输入并推荐相关技能的插件",
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git",
+    "directory": "extensions/prompt-reorganization"
+  },
+  "keywords": ["openclaw", "plugin", "prompt", "reorganization", "skills", "ai"],
+  "openclaw": {
+    "engines": {
+      "openclaw": ">=2026.0.0"
+    },
+    "capabilities": ["prompt-reorganization", "skill-recommendation", "ai-analysis"],
+    "hooks": ["prompt_reorganization"],
+    "commands": ["prompt-reorganization"],
+    "install": {
+      "npmSpec": "@openclaw/prompt-reorganization",
+      "localPath": "extensions/prompt-reorganization",
+      "defaultChoice": "local"
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否启用prompt重新整理功能"
+      },
+      "confidenceThreshold": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.7,
+        "description": "重新整理结果的置信度阈值"
+      },
+      "maxSkills": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 20,
+        "default": 10,
+        "description": "最大推荐技能数量"
+      },
+      "timeoutMs": {
+        "type": "integer",
+        "minimum": 1000,
+        "maximum": 30000,
+        "default": 5000,
+        "description": "重新整理超时时间(毫秒)"
+      },
+      "customPrompt": {
+        "type": "string",
+        "description": "自定义重新整理prompt模板"
+      },
+      "debugMode": {
+        "type": "boolean",
+        "default": false,
+        "description": "是否启用调试模式"
+      },
+      "fallbackToOriginal": {
+        "type": "boolean",
+        "default": true,
+        "description": "失败时是否回退到原始prompt"
+      }
+    }
+  },
+  "uiHints": {
+    "enabled": {
+      "label": "启用插件",
+      "description": "是否启用prompt重新整理功能"
+    },
+    "confidenceThreshold": {
+      "label": "置信度阈值",
+      "description": "重新整理结果的置信度阈值 (0-1)",
+      "placeholder": "0.7"
+    },
+    "maxSkills": {
+      "label": "最大技能数量",
+      "description": "最大推荐技能数量",
+      "placeholder": "10"
+    },
+    "timeoutMs": {
+      "label": "超时时间",
+      "description": "重新整理超时时间(毫秒)",
+      "placeholder": "5000"
+    },
+    "customPrompt": {
+      "label": "自定义模板",
+      "description": "自定义重新整理prompt模板",
+      "placeholder": "输入自定义模板..."
+    },
+    "debugMode": {
+      "label": "调试模式",
+      "description": "是否启用调试模式"
+    },
+    "fallbackToOriginal": {
+      "label": "回退到原始",
+      "description": "失败时是否回退到原始prompt"
+    }
+  }
+}

@@ -469,6 +469,154 @@ export const GENERATED_BUNDLED_PLUGIN_METADATA = [
     },
   },
   {
+    dirName: "data-extractor",
+    idHint: "data-extractor",
+    source: {
+      source: "./index.ts",
+      built: "index.js",
+    },
+    packageName: "@openclaw/data-extractor",
+    packageVersion: "1.0.7",
+    packageDescription: "使用大模型从自然语言中提取结构化数据并存储到文件系统",
+    packageManifest: {
+      extensions: ["./index.ts"],
+    },
+    manifest: {
+      id: "data-extractor",
+      configSchema: {
+        type: "object",
+        additionalProperties: false,
+        properties: {
+          enabled: {
+            type: "boolean",
+            default: true,
+            description: "是否启用数据提取功能",
+          },
+          databasePath: {
+            type: "string",
+            default: "~/.openclaw/data/data-extractor-data",
+            description: "数据存储目录",
+          },
+          maxEntries: {
+            type: "integer",
+            minimum: 1,
+            maximum: 100000,
+            default: 10000,
+            description: "最大条目数",
+          },
+          autoValidate: {
+            type: "boolean",
+            default: true,
+            description: "是否自动验证数据",
+          },
+          defaultConfidence: {
+            type: "number",
+            minimum: 0,
+            maximum: 1,
+            default: 0.7,
+            description: "默认置信度阈值",
+          },
+          defaultProvider: {
+            type: "string",
+            description: "默认模型提供商",
+          },
+          defaultModel: {
+            type: "string",
+            description: "默认模型",
+          },
+          allowedModels: {
+            type: "array",
+            items: {
+              type: "string",
+            },
+            default: [],
+            description: "允许的模型列表",
+          },
+          maxTokens: {
+            type: "integer",
+            minimum: 100,
+            maximum: 10000,
+            default: 2000,
+            description: "最大token数",
+          },
+          timeoutMs: {
+            type: "integer",
+            minimum: 1000,
+            maximum: 60000,
+            default: 30000,
+            description: "超时时间(毫秒)",
+          },
+          debugMode: {
+            type: "boolean",
+            default: false,
+            description: "是否启用调试模式",
+          },
+          fallbackToOriginal: {
+            type: "boolean",
+            default: true,
+            description: "失败时是否回退到原始数据",
+          },
+        },
+      },
+      name: "Data Extractor",
+      description: "使用大模型从自然语言中提取结构化数据并存储到文件系统",
+      version: "1.0.7",
+      uiHints: {
+        enabled: {
+          label: "启用插件",
+          description: "是否启用数据提取功能",
+        },
+        databasePath: {
+          label: "数据存储目录",
+          placeholder: "~/.openclaw/data/data-extractor-data",
+        },
+        maxEntries: {
+          label: "最大条目数",
+          placeholder: "10000",
+        },
+        autoValidate: {
+          label: "自动验证数据",
+          description: "启用后会自动验证输入数据的格式和内容",
+        },
+        defaultConfidence: {
+          label: "默认置信度阈值",
+          description: "数据提取的最低置信度要求 (0-1)",
+          placeholder: "0.7",
+        },
+        defaultProvider: {
+          label: "默认模型提供商",
+          placeholder: "留空使用OpenClaw全局配置",
+        },
+        defaultModel: {
+          label: "默认模型",
+          placeholder: "留空使用OpenClaw全局配置",
+        },
+        allowedModels: {
+          label: "允许的模型列表",
+          description: "留空表示允许所有配置的模型",
+        },
+        maxTokens: {
+          label: "最大Token数",
+          description: "最大token数",
+          placeholder: "2000",
+        },
+        timeoutMs: {
+          label: "超时时间",
+          description: "超时时间(毫秒)",
+          placeholder: "30000",
+        },
+        debugMode: {
+          label: "调试模式",
+          description: "是否启用调试模式",
+        },
+        fallbackToOriginal: {
+          label: "回退到原始",
+          description: "失败时是否回退到原始数据",
+        },
+      },
+    },
+  },
+  {
     dirName: "deepgram",
     idHint: "deepgram",
     source: {
@@ -1542,6 +1690,87 @@ export const GENERATED_BUNDLED_PLUGIN_METADATA = [
       },
       name: "Lobster",
       description: "Typed workflow tool with resumable approvals.",
+    },
+  },
+  {
+    dirName: "loop-warning",
+    idHint: "loop-warning",
+    source: {
+      source: "./index.ts",
+      built: "index.js",
+    },
+    packageName: "@openclaw/loop-warning",
+    packageVersion: "1.0.0",
+    packageDescription:
+      "Detects tool call loops and injects warnings to help the agent break out of repetitive patterns",
+    packageManifest: {
+      extensions: ["./index.ts"],
+    },
+    manifest: {
+      id: "loop-warning",
+      configSchema: {
+        type: "object",
+        additionalProperties: false,
+        properties: {
+          enabled: {
+            type: "boolean",
+            default: true,
+            description: "Enable loop detection warning",
+          },
+          threshold: {
+            type: "integer",
+            minimum: 1,
+            maximum: 100,
+            default: 10,
+            description: "Number of tool calls before triggering LLM analysis",
+          },
+          analysisModel: {
+            type: "string",
+            default: "sonnet-4-20250514",
+            description: "Model to use for LLM loop analysis",
+          },
+          maxHistoryMessages: {
+            type: "integer",
+            minimum: 5,
+            maximum: 50,
+            default: 20,
+            description: "Maximum number of history messages to send for analysis",
+          },
+          warningMessage: {
+            type: "string",
+            description: "Custom warning message template (fallback if LLM fails)",
+          },
+        },
+      },
+      name: "Loop Warning",
+      description:
+        "Detects tool call loops and injects LLM-generated analysis to help the agent break out of repetitive patterns",
+      version: "1.0.0",
+      uiHints: {
+        enabled: {
+          label: "Enable Plugin",
+          description: "Enable loop detection warning",
+        },
+        threshold: {
+          label: "Threshold",
+          description: "Tool calls before warning",
+          placeholder: "10",
+        },
+        analysisModel: {
+          label: "Analysis Model",
+          description: "Model for LLM analysis",
+          placeholder: "sonnet-4-20250514",
+        },
+        maxHistoryMessages: {
+          label: "Max History",
+          description: "History messages for analysis",
+          placeholder: "20",
+        },
+        warningMessage: {
+          label: "Fallback Message",
+          description: "Custom warning (if LLM fails)",
+        },
+      },
     },
   },
   {
@@ -2634,6 +2863,106 @@ export const GENERATED_BUNDLED_PLUGIN_METADATA = [
         "webSearch.model": {
           label: "Perplexity Model",
           help: "Optional Sonar/OpenRouter model override.",
+        },
+      },
+    },
+  },
+  {
+    dirName: "prompt-reorganization",
+    idHint: "prompt-reorganization",
+    source: {
+      source: "./index.ts",
+      built: "index.js",
+    },
+    packageName: "@openclaw/prompt-reorganization",
+    packageVersion: "1.0.0",
+    packageDescription: "智能分析用户输入并推荐相关技能的插件",
+    packageManifest: {
+      extensions: ["./index.ts"],
+    },
+    manifest: {
+      id: "prompt-reorganization",
+      configSchema: {
+        type: "object",
+        additionalProperties: false,
+        properties: {
+          enabled: {
+            type: "boolean",
+            default: true,
+            description: "是否启用prompt重新整理功能",
+          },
+          confidenceThreshold: {
+            type: "number",
+            minimum: 0,
+            maximum: 1,
+            default: 0.7,
+            description: "重新整理结果的置信度阈值",
+          },
+          maxSkills: {
+            type: "integer",
+            minimum: 1,
+            maximum: 20,
+            default: 10,
+            description: "最大推荐技能数量",
+          },
+          timeoutMs: {
+            type: "integer",
+            minimum: 1000,
+            maximum: 30000,
+            default: 5000,
+            description: "重新整理超时时间(毫秒)",
+          },
+          customPrompt: {
+            type: "string",
+            description: "自定义重新整理prompt模板",
+          },
+          debugMode: {
+            type: "boolean",
+            default: false,
+            description: "是否启用调试模式",
+          },
+          fallbackToOriginal: {
+            type: "boolean",
+            default: true,
+            description: "失败时是否回退到原始prompt",
+          },
+        },
+      },
+      name: "Prompt Reorganization",
+      description: "智能分析用户输入并推荐相关技能的插件",
+      version: "1.0.0",
+      uiHints: {
+        enabled: {
+          label: "启用插件",
+          description: "是否启用prompt重新整理功能",
+        },
+        confidenceThreshold: {
+          label: "置信度阈值",
+          description: "重新整理结果的置信度阈值 (0-1)",
+          placeholder: "0.7",
+        },
+        maxSkills: {
+          label: "最大技能数量",
+          description: "最大推荐技能数量",
+          placeholder: "10",
+        },
+        timeoutMs: {
+          label: "超时时间",
+          description: "重新整理超时时间(毫秒)",
+          placeholder: "5000",
+        },
+        customPrompt: {
+          label: "自定义模板",
+          description: "自定义重新整理prompt模板",
+          placeholder: "输入自定义模板...",
+        },
+        debugMode: {
+          label: "调试模式",
+          description: "是否启用调试模式",
+        },
+        fallbackToOriginal: {
+          label: "回退到原始",
+          description: "失败时是否回退到原始prompt",
         },
       },
     },

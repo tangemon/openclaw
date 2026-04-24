@@ -1,0 +1,155 @@
+{
+  "id": "data-extractor",
+  "name": "Data Extractor",
+  "version": "1.0.7",
+  "description": "使用大模型从自然语言中提取结构化数据并存储到文件系统",
+  "author": "OpenClaw Team",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git",
+    "directory": "extensions/data-extractor"
+  },
+  "keywords": ["openclaw", "plugin", "data-extraction", "llm", "natural-language"],
+  "openclaw": {
+    "engines": {
+      "openclaw": ">=2026.0.0"
+    },
+    "capabilities": ["data-extraction", "llm-processing", "structured-data"],
+    "commands": ["data-extractor"],
+    "install": {
+      "npmSpec": "@openclaw/data-extractor",
+      "localPath": "extensions/data-extractor",
+      "defaultChoice": "local"
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否启用数据提取功能"
+      },
+      "databasePath": {
+        "type": "string",
+        "default": "~/.openclaw/data/data-extractor-data",
+        "description": "数据存储目录"
+      },
+      "maxEntries": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100000,
+        "default": 10000,
+        "description": "最大条目数"
+      },
+      "autoValidate": {
+        "type": "boolean",
+        "default": true,
+        "description": "是否自动验证数据"
+      },
+      "defaultConfidence": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.7,
+        "description": "默认置信度阈值"
+      },
+      "defaultProvider": {
+        "type": "string",
+        "description": "默认模型提供商"
+      },
+      "defaultModel": {
+        "type": "string",
+        "description": "默认模型"
+      },
+      "allowedModels": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [],
+        "description": "允许的模型列表"
+      },
+      "maxTokens": {
+        "type": "integer",
+        "minimum": 100,
+        "maximum": 10000,
+        "default": 2000,
+        "description": "最大token数"
+      },
+      "timeoutMs": {
+        "type": "integer",
+        "minimum": 1000,
+        "maximum": 60000,
+        "default": 30000,
+        "description": "超时时间(毫秒)"
+      },
+      "debugMode": {
+        "type": "boolean",
+        "default": false,
+        "description": "是否启用调试模式"
+      },
+      "fallbackToOriginal": {
+        "type": "boolean",
+        "default": true,
+        "description": "失败时是否回退到原始数据"
+      }
+    }
+  },
+  "uiHints": {
+    "enabled": {
+      "label": "启用插件",
+      "description": "是否启用数据提取功能"
+    },
+    "databasePath": {
+      "label": "数据存储目录",
+      "placeholder": "~/.openclaw/data/data-extractor-data"
+    },
+    "maxEntries": {
+      "label": "最大条目数",
+      "placeholder": "10000"
+    },
+    "autoValidate": {
+      "label": "自动验证数据",
+      "description": "启用后会自动验证输入数据的格式和内容"
+    },
+    "defaultConfidence": {
+      "label": "默认置信度阈值",
+      "description": "数据提取的最低置信度要求 (0-1)",
+      "placeholder": "0.7"
+    },
+    "defaultProvider": {
+      "label": "默认模型提供商",
+      "placeholder": "留空使用OpenClaw全局配置"
+    },
+    "defaultModel": {
+      "label": "默认模型",
+      "placeholder": "留空使用OpenClaw全局配置"
+    },
+    "allowedModels": {
+      "label": "允许的模型列表",
+      "description": "留空表示允许所有配置的模型"
+    },
+    "maxTokens": {
+      "label": "最大Token数",
+      "description": "最大token数",
+      "placeholder": "2000"
+    },
+    "timeoutMs": {
+      "label": "超时时间",
+      "description": "超时时间(毫秒)",
+      "placeholder": "30000"
+    },
+    "debugMode": {
+      "label": "调试模式",
+      "description": "是否启用调试模式"
+    },
+    "fallbackToOriginal": {
+      "label": "回退到原始",
+      "description": "失败时是否回退到原始数据"
+    }
+  }
+}
